@@ -23,8 +23,8 @@ class ControllerPaymentMoka extends Controller
         );
 
         $data['breadcrumbs'][] = array(
-            'text' => $this->language->get('text_payment'),
-            'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'] . '&type=payment', true)
+            'text' => $this->language->get('text_extension'),
+            'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], true)
         );
 
         $data['breadcrumbs'][] = array(
@@ -45,7 +45,7 @@ class ControllerPaymentMoka extends Controller
 
 		$data['text_status'] = $this->language->get('text_status');
 		$data['text_loading'] = $this->language->get('text_loading');
-		$data['text_payment'] = $this->language->get('text_payment');
+		$data['text_extension'] = $this->language->get('text_extension');
 		$data['text_extension_status_enabled'] = $this->language->get('text_extension_status_enabled');
 		$data['text_extension_status_disabled'] = $this->language->get('text_extension_status_disabled');
 		$data['text_success'] = $this->language->get('text_success');
@@ -75,14 +75,6 @@ class ControllerPaymentMoka extends Controller
         $data['column_payment_status'] = $this->language->get('column_payment_status');
         $data['column_transaction_status'] = $this->language->get('column_transaction_status');
         $data['column_created_at'] = $this->language->get('column_created_at');
-
-        $data['error_api_environment'] = $this->language->get('error_api_environment');
-        $data['error_dealer_code'] = $this->language->get('error_dealer_code');
-        $data['error_username'] = $this->language->get('error_username');
-        $data['error_password'] = $this->language->get('error_password');
-        $data['error_order_status'] = $this->language->get('error_order_status');
-        $data['error_cancel_order_status'] = $this->language->get('error_cancel_order_status');
-        $data['error_permission'] = $this->language->get('error_permission');
 
         $data['error_api_environment'] = '';
         $data['error_dealer_code'] = '';
@@ -181,7 +173,7 @@ class ControllerPaymentMoka extends Controller
         $data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
         $data['action'] = $this->url->link('payment/moka', 'token=' . $this->session->data['token'], true);
-        $data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'] . '&type=payment', true);
+        $data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], true);
         $data['token'] = $this->session->data['token'];
         $data['url_list_transactions'] = html_entity_decode($this->url->link('payment/moka/transactions', 'token=' . $this->session->data['token'] . '&page={PAGE}', true));
 
@@ -224,8 +216,8 @@ class ControllerPaymentMoka extends Controller
         $this->load->model('sale/order');
 
         foreach ($transactions as $transaction) {
-            $amount = $this->currency->format($transaction['amount'], $transaction['currency_code']);
-            $commission_amount = $this->currency->format($transaction['commission_amount'], $transaction['currency_code']);
+            $amount = $transaction['amount'] . ' ' . $transaction['currency_code'];
+            $commission_amount = $transaction['commission_amount'] . ' ' . $transaction['currency_code'];
 
             $order_info = $this->model_sale_order->getOrder($transaction['order_id']);
 

@@ -1,7 +1,7 @@
 <?php
 
-$_['heading_title'] = 'Moka Payment';
-$_['text_moka'] = '<a href="https://www.moka.com" target="_blank"><img src="view/image/payment/moka.png" title="Moka"></a>';
+$_['heading_title']                     = 'Moka Payment';
+$_['text_moka']                         = '<a href="https://www.moka.com" target="_blank"><img src="view/image/payment/moka.png" title="Moka"></a>';
 
 // Tab
 $_['tab_setting']                       = 'Settings';
@@ -10,7 +10,7 @@ $_['tab_transaction']                   = 'Transactions';
 //Text
 $_['text_status']                       = 'Status';
 $_['text_loading']                      = 'Loading';
-$_['text_payment']                      = 'Payment';
+$_['text_extension']                    = 'Extensions';
 $_['text_extension_status_disabled']    = 'Disabled';
 $_['text_extension_status_enabled']     = 'Enabled';
 
